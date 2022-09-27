@@ -1,28 +1,22 @@
-package collections;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.time.LocalDate;
+package utils.collections;
 
+import javax.xml.bind.annotation.XmlElement;
+import java.io.Serializable;
+import java.time.LocalDate;
 
 
 /**
  * The Route class represents a route
  */
-public class Route implements Comparable<Route>{
+public class Route implements Comparable<Route>, Serializable {
     private int id;
-    private String name;
-    private Coordinates coordinates;
-    private LocalDate creationDate;
-    private LocationFrom locationFrom;
-    private LocationTo locationTo;
-    private float distance;
+    private final String name;
+    private final Coordinates coordinates;
+    private final LocalDate creationDate;
+    private final LocationFrom locationFrom;
+    private final LocationTo locationTo;
+    private final float distance;
 
-
-
-    public Route(float v){
-
-    }
 
     public Route(int id, String name, Coordinates coordinates, LocalDate creationDate, LocationFrom locationFrom, LocationTo locationTo, Float distance) {
         this.id = id;
@@ -115,7 +109,9 @@ public class Route implements Comparable<Route>{
     }
 
 
-
+    public double getLocation() {
+        return coordinates.getX() + coordinates.getY();
+    }
 
 
     /**
@@ -126,9 +122,8 @@ public class Route implements Comparable<Route>{
      */
     @Override
     public int compareTo(Route o) {
-        return this.getId() - o.getId();
+        return (int) (this.getLocation() - o.getLocation());
     }
-
 
 
     /**
@@ -140,8 +135,8 @@ public class Route implements Comparable<Route>{
     public String toString() {
         String result = String.format("Id: %d\nName: %s\nCoordinates: {x: %f, y: %d}\nCreation Time: %s\nLocationFrom:{name: %s, x: %f, y: %f}\nLocationTo:{name: %s, x: %d, y: %d}\n",
                 getId(), getName(), getCoordinates().getX(), getCoordinates().getY(), getCreationDate(), getLocationFrom().getName(), getLocationFrom().getx(),
-                getLocationFrom().gety(),  getLocationTo().getName(), getLocationTo().get_x(), getLocationTo().get_y());
-        if(getDistance() == 0) result += "Distance: null";
+                getLocationFrom().gety(), getLocationTo().getName(), getLocationTo().get_x(), getLocationTo().get_y());
+        if (getDistance() == 0) result += "Distance: null \n";
         else result += String.format("Distance: %s", getDistance());
         return result;
 

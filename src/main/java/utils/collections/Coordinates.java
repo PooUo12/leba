@@ -1,6 +1,8 @@
-package collections;
+package utils.collections;
 
-public class Coordinates {
+import java.io.Serializable;
+
+public class Coordinates implements Serializable {
     private final double x;
     private final Long y;
 

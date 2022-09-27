@@ -1,11 +1,13 @@
-package collections;
+package utils.collections;
 
-public class LocationTo {
-    private String name; //Поле не может быть null, Строка не может быть пустой
-    private final int x;
-    private final long y;
+import java.io.Serializable;
 
-    public LocationTo(String name, int x, long y) {
+public class LocationFrom implements Serializable {
+    private final String name; //Поле не может быть null, Строка не может быть пустой
+    private final float x;
+    private final float y;
+
+    public LocationFrom(String name, float y, float x) {
         this.name = name;
         this.x = x;
         this.y = y;
@@ -25,7 +27,7 @@ public class LocationTo {
      *
      * @return The value of the instance variable x.
      */
-    public int get_x() {
+    public float getx() {
         return x;
     }
 
@@ -34,7 +36,7 @@ public class LocationTo {
      *
      * @return The value of the instance variable y.
      */
-    public long get_y() {
+    public float gety() {
         return y;
     }
 }

@@ -1,7 +1,9 @@
-package collections;
+package utils.collections;
 
-public class LocationTo {
-    private String name; //Поле не может быть null, Строка не может быть пустой
+import java.io.Serializable;
+
+public class LocationTo implements Serializable {
+    private final String name; //Поле не может быть null, Строка не может быть пустой
     private final int x;
     private final long y;
 
